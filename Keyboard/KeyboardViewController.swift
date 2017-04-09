@@ -13,10 +13,11 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     let defaults = UserDefaults.standard
     let defaultSavedWordsKey = "SAVED_WORDS"
     
-    var savedWords = ["ADD", "NEXT KEYBOARD"]
+    var savedWords: [String] = []
     var tableView: UITableView!
 
-    @IBOutlet var nextKeyboardButton: UIButton!
+    //default button added when taget is added, commenting out but leaving for reference
+    //@IBOutlet var nextKeyboardButton: UIButton!
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -28,6 +29,9 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         super.viewDidLoad()
         
         // Perform custom UI setup here
+        
+        //default button added when taget is added, commenting out but leaving for reference
+        /*
         self.nextKeyboardButton = UIButton(type: .system)
         
         self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
@@ -40,7 +44,7 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
+        */
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,12 +62,60 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - 55))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.separatorStyle = .none
+        
         self.view.addSubview(tableView)
         
+        //add additional view to bottom of keyboard
+        let bottomView = UIView(frame: CGRect(x: 0, y: displayHeight - 50, width: displayWidth, height: 50))
+        bottomView.backgroundColor = UIColor.white
+        
+        let stackView = UIStackView(frame: CGRect(x: 5, y: 5, width: bottomView.frame.width - 10, height: bottomView.frame.height - 10))
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        
+        let btnNext = UIButton()
+        btnNext.backgroundColor = UIColor.lightGray
+        btnNext.setTitle("Next Keyboard", for: .normal)
+        btnNext.addTarget(self, action: #selector(KeyboardViewController.nextKeyboard), for: .touchUpInside)
+        stackView.addArrangedSubview(btnNext)
+        
+        let btnAdd = UIButton()
+        btnAdd.setTitle("Add To List", for: .normal)
+        btnAdd.backgroundColor = UIColor.lightGray
+        btnAdd.addTarget(self, action: #selector(KeyboardViewController.addString), for: .touchUpInside)
+        stackView.addArrangedSubview(btnAdd)
+        
+        bottomView.addSubview(stackView)
+        
+        self.view.addSubview(bottomView)
+        
+    }
+    
+    func addString() {
+        //pulls text already in textField
+        let addition = textDocumentProxy.documentContextBeforeInput ?? ""
+        
+        //inserts text to top of list
+        savedWords.insert(addition, at: 0)
+        
+        //save new array to user defaults
+        defaults.set(savedWords, forKey: defaultSavedWordsKey)
+        
+        tableView.reloadData()
+    }
+    
+    func nextKeyboard() {
+        //Switch to next keyboard
+        self.advanceToNextInputMode()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,30 +130,20 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 0 {
-            //pulls text already in textField
-            let addition = textDocumentProxy.documentContextBeforeInput ?? ""
-            
-            //inserts text to top of list
-            savedWords.insert(addition, at: 1)
+        //adds text from selected cell to the textField
+        self.textDocumentProxy.insertText(savedWords[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            savedWords.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
             //save new array to user defaults
             defaults.set(savedWords, forKey: defaultSavedWordsKey)
-            
-            tableView.reloadData()
-            
-            return
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
-        
-        if indexPath.row == (savedWords.count - 1) {
-            //Switch to next keyboard
-            self.advanceToNextInputMode()
-            return
-        }
-        
-        //adds text from selected cell to the textField
-        self.textDocumentProxy.insertText(savedWords[indexPath.row])
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,7 +165,11 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         } else {
             textColor = UIColor.black
         }
+        
+        //default button added when taget is added, commenting out but leaving for reference
+        /*
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
+        */
     }
 
 }
