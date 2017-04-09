@@ -1,3 +1,5 @@
+![alt tag](http://i.imgur.com/BbTbor5.png)
+
 # MemBoard
 
 A custom iOS keyboard written in Swift 3.1
