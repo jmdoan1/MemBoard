@@ -12,7 +12,33 @@
 		C11FE2D51E9A8212009BC44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11FE2D31E9A8212009BC44C /* Main.storyboard */; };
 		C11FE2D71E9A8212009BC44C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C11FE2D61E9A8212009BC44C /* Assets.xcassets */; };
 		C11FE2DA1E9A8212009BC44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11FE2D81E9A8212009BC44C /* LaunchScreen.storyboard */; };
+		C11FE2E81E9A8310009BC44C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FE2E71E9A8310009BC44C /* KeyboardViewController.swift */; };
+		C11FE2EC1E9A8310009BC44C /* Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C11FE2E51E9A8310009BC44C /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C11FE2EA1E9A8310009BC44C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C11FE2C41E9A8212009BC44C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C11FE2E41E9A8310009BC44C;
+			remoteInfo = Keyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C11FE2F01E9A8310009BC44C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C11FE2EC1E9A8310009BC44C /* Keyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C11FE2CC1E9A8212009BC44C /* MemBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +48,20 @@
 		C11FE2D61E9A8212009BC44C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C11FE2D91E9A8212009BC44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C11FE2DB1E9A8212009BC44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C11FE2E51E9A8310009BC44C /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C11FE2E71E9A8310009BC44C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		C11FE2E91E9A8310009BC44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C11FE2C91E9A8212009BC44C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C11FE2E21E9A8310009BC44C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				C11FE2CE1E9A8212009BC44C /* MemBoard */,
+				C11FE2E61E9A8310009BC44C /* Keyboard */,
 				C11FE2CD1E9A8212009BC44C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				C11FE2CC1E9A8212009BC44C /* MemBoard.app */,
+				C11FE2E51E9A8310009BC44C /* Keyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +102,15 @@
 			path = MemBoard;
 			sourceTree = "<group>";
 		};
+		C11FE2E61E9A8310009BC44C /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C11FE2E71E9A8310009BC44C /* KeyboardViewController.swift */,
+				C11FE2E91E9A8310009BC44C /* Info.plist */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,15 +121,34 @@
 				C11FE2C81E9A8212009BC44C /* Sources */,
 				C11FE2C91E9A8212009BC44C /* Frameworks */,
 				C11FE2CA1E9A8212009BC44C /* Resources */,
+				C11FE2F01E9A8310009BC44C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C11FE2EB1E9A8310009BC44C /* PBXTargetDependency */,
 			);
 			name = MemBoard;
 			productName = MemBoard;
 			productReference = C11FE2CC1E9A8212009BC44C /* MemBoard.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C11FE2E41E9A8310009BC44C /* Keyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C11FE2ED1E9A8310009BC44C /* Build configuration list for PBXNativeTarget "Keyboard" */;
+			buildPhases = (
+				C11FE2E11E9A8310009BC44C /* Sources */,
+				C11FE2E21E9A8310009BC44C /* Frameworks */,
+				C11FE2E31E9A8310009BC44C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Keyboard;
+			productName = Keyboard;
+			productReference = C11FE2E51E9A8310009BC44C /* Keyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +161,11 @@
 				ORGANIZATIONNAME = "Justin Doan";
 				TargetAttributes = {
 					C11FE2CB1E9A8212009BC44C = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = 28SGD9V9Q9;
+						ProvisioningStyle = Automatic;
+					};
+					C11FE2E41E9A8310009BC44C = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 28SGD9V9Q9;
 						ProvisioningStyle = Automatic;
@@ -115,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				C11FE2CB1E9A8212009BC44C /* MemBoard */,
+				C11FE2E41E9A8310009BC44C /* Keyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +202,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C11FE2E31E9A8310009BC44C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -142,7 +221,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C11FE2E11E9A8310009BC44C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C11FE2E81E9A8310009BC44C /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C11FE2EB1E9A8310009BC44C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C11FE2E41E9A8310009BC44C /* Keyboard */;
+			targetProxy = C11FE2EA1E9A8310009BC44C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C11FE2D31E9A8212009BC44C /* Main.storyboard */ = {
@@ -262,9 +357,11 @@
 		C11FE2DF1E9A8212009BC44C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = MemBoard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.justindoan.MemBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -275,12 +372,40 @@
 		C11FE2E01E9A8212009BC44C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = MemBoard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.justindoan.MemBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C11FE2EE1E9A8310009BC44C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 28SGD9V9Q9;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justindoan.MemBoard.Keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C11FE2EF1E9A8310009BC44C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 28SGD9V9Q9;
+				INFOPLIST_FILE = Keyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.justindoan.MemBoard.Keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -302,6 +427,14 @@
 			buildConfigurations = (
 				C11FE2DF1E9A8212009BC44C /* Debug */,
 				C11FE2E01E9A8212009BC44C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C11FE2ED1E9A8310009BC44C /* Build configuration list for PBXNativeTarget "Keyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C11FE2EE1E9A8310009BC44C /* Debug */,
+				C11FE2EF1E9A8310009BC44C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
