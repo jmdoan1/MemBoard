@@ -46,12 +46,15 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        //pull saved strings from user defaults if they exist
         let words = defaults.value(forKey: defaultSavedWordsKey)
         
         if words != nil {
             savedWords = words as! [String]
         }
         
+        
+        //add tableview
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
@@ -77,10 +80,13 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
+            //pulls text already in textField
             let addition = textDocumentProxy.documentContextBeforeInput ?? ""
             
+            //inserts text to top of list
             savedWords.insert(addition, at: 1)
             
+            //save new array to user defaults
             defaults.set(savedWords, forKey: defaultSavedWordsKey)
             
             tableView.reloadData()
@@ -89,10 +95,12 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         }
         
         if indexPath.row == (savedWords.count - 1) {
+            //Switch to next keyboard
             self.advanceToNextInputMode()
             return
         }
         
+        //adds text from selected cell to the textField
         self.textDocumentProxy.insertText(savedWords[indexPath.row])
     }
     
