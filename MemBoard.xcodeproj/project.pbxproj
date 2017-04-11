@@ -51,6 +51,8 @@
 		C11FE2E51E9A8310009BC44C /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11FE2E71E9A8310009BC44C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		C11FE2E91E9A8310009BC44C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C11FE2F31E9D038B009BC44C /* Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Keyboard.entitlements; sourceTree = "<group>"; };
+		C11FE2F41E9D0395009BC44C /* MemBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MemBoard.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		C11FE2CE1E9A8212009BC44C /* MemBoard */ = {
 			isa = PBXGroup;
 			children = (
+				C11FE2F41E9D0395009BC44C /* MemBoard.entitlements */,
 				C11FE2CF1E9A8212009BC44C /* AppDelegate.swift */,
 				C11FE2D11E9A8212009BC44C /* ViewController.swift */,
 				C11FE2D31E9A8212009BC44C /* Main.storyboard */,
@@ -105,6 +108,7 @@
 		C11FE2E61E9A8310009BC44C /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				C11FE2F31E9D038B009BC44C /* Keyboard.entitlements */,
 				C11FE2E71E9A8310009BC44C /* KeyboardViewController.swift */,
 				C11FE2E91E9A8310009BC44C /* Info.plist */,
 			);
@@ -164,11 +168,21 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 28SGD9V9Q9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					C11FE2E41E9A8310009BC44C = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 28SGD9V9Q9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -359,6 +373,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MemBoard/MemBoard.entitlements;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = MemBoard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -374,6 +389,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MemBoard/MemBoard.entitlements;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = MemBoard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -387,6 +403,7 @@
 		C11FE2EE1E9A8310009BC44C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -401,6 +418,7 @@
 		C11FE2EF1E9A8310009BC44C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Keyboard/Keyboard.entitlements;
 				DEVELOPMENT_TEAM = 28SGD9V9Q9;
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

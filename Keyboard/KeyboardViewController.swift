@@ -10,7 +10,7 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITableViewDataSource {
     
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName: "group.com.justindoan.MemBoard")!
     let defaultSavedWordsKey = "SAVED_WORDS"
     
     var savedWords: [String] = []
@@ -104,8 +104,21 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         //pulls text already in textField
         let addition = textDocumentProxy.documentContextBeforeInput ?? ""
         
-        //inserts text to top of list
-        savedWords.insert(addition, at: 0)
+        let end = defaults.value(forKey: "end")
+        
+        if end != nil {
+            let toEnd = end as! Bool
+            if toEnd {
+                //inserts text at end
+                savedWords.append(addition)
+            } else {
+                //inserts text to top of list
+                savedWords.insert(addition, at: 0)
+            }
+        } else {
+            //inserts text to top of list
+            savedWords.insert(addition, at: 0)
+        }
         
         //save new array to user defaults
         defaults.set(savedWords, forKey: defaultSavedWordsKey)
