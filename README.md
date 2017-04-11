@@ -1,4 +1,4 @@
-![alt tag](http://i.imgur.com/BbTbor5.png)
+![alt tag](http://i.imgur.com/Zhas5V0.png)
 
 # MemBoard
 
