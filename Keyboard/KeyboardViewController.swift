@@ -94,6 +94,12 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         btnAdd.addTarget(self, action: #selector(KeyboardViewController.addString), for: .touchUpInside)
         stackView.addArrangedSubview(btnAdd)
         
+        let btnDelete = UIButton()
+        btnDelete.setTitle("<-", for: .normal)
+        btnDelete.backgroundColor = UIColor.lightGray
+        btnDelete.addTarget(self, action: #selector(KeyboardViewController.backSpace), for: .touchUpInside)
+        stackView.addArrangedSubview(btnDelete)
+        
         bottomView.addSubview(stackView)
         
         self.view.addSubview(bottomView)
@@ -129,6 +135,10 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     func nextKeyboard() {
         //Switch to next keyboard
         self.advanceToNextInputMode()
+    }
+    
+    func backSpace() {
+        textDocumentProxy.deleteBackward()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
