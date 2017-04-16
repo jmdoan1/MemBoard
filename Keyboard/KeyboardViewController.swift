@@ -57,11 +57,9 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
             savedWords = words as! [String]
         }
         
-        
         //add tableview
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
-        
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - 55))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
@@ -76,31 +74,73 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         let bottomView = UIView(frame: CGRect(x: 0, y: displayHeight - 50, width: displayWidth, height: 50))
         bottomView.backgroundColor = UIColor.white
         
-        let stackView = UIStackView(frame: CGRect(x: 5, y: 5, width: bottomView.frame.width - 10, height: bottomView.frame.height - 10))
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 5
+        let stackViewMain = UIStackView(frame: CGRect(x: 5, y: 5, width: bottomView.frame.width - 10, height: bottomView.frame.height - 10))
+        stackViewMain.axis = .horizontal
+        stackViewMain.distribution = .fillEqually
+        stackViewMain.alignment = .fill
+        stackViewMain.spacing = 5
+        
+        let buttonBackgroundColor = UIColor.gray
+        let buttonTextColor = UIColor.white
+        let buttonCornerRadius = CGFloat(5)
         
         let btnNext = UIButton()
-        btnNext.backgroundColor = UIColor.lightGray
-        btnNext.setTitle("Next Keyboard", for: .normal)
+        btnNext.setTitle("\u{2328}", for: .normal)
+        btnNext.backgroundColor = buttonBackgroundColor
+        btnNext.setTitleColor(buttonTextColor, for: .normal)
+        btnNext.layer.cornerRadius = buttonCornerRadius
         btnNext.addTarget(self, action: #selector(KeyboardViewController.nextKeyboard), for: .touchUpInside)
-        stackView.addArrangedSubview(btnNext)
+        //stackView.addArrangedSubview(btnNext)
         
         let btnAdd = UIButton()
-        btnAdd.setTitle("Add To List", for: .normal)
-        btnAdd.backgroundColor = UIColor.lightGray
+        btnAdd.setTitle("+", for: .normal)
+        btnAdd.backgroundColor = buttonBackgroundColor
+        btnAdd.setTitleColor(buttonTextColor, for: .normal)
+        btnAdd.layer.cornerRadius = buttonCornerRadius
         btnAdd.addTarget(self, action: #selector(KeyboardViewController.addString), for: .touchUpInside)
-        stackView.addArrangedSubview(btnAdd)
+        
+        let stackViewLeft = UIStackView(arrangedSubviews: [btnNext, btnAdd])
+        stackViewLeft.axis = .horizontal
+        stackViewLeft.distribution = .fillEqually
+        stackViewLeft.alignment = .fill
+        stackViewLeft.spacing = 5
+        
+        stackViewMain.addArrangedSubview(stackViewLeft)
+        
+        let btnSpace = UIButton()
+        btnSpace.setTitle("space", for: .normal)
+        btnSpace.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        btnSpace.backgroundColor = buttonBackgroundColor
+        btnSpace.setTitleColor(buttonTextColor, for: .normal)
+        btnSpace.layer.cornerRadius = buttonCornerRadius
+        btnSpace.addTarget(self, action: #selector(KeyboardViewController.spaceBar), for: .touchUpInside)
+        
+        stackViewMain.addArrangedSubview(btnSpace)
         
         let btnDelete = UIButton()
-        btnDelete.setTitle("<-", for: .normal)
-        btnDelete.backgroundColor = UIColor.lightGray
+        btnDelete.setTitle("⌫", for: .normal)
+        btnDelete.backgroundColor = buttonBackgroundColor
+        btnDelete.setTitleColor(buttonTextColor, for: .normal)
+        btnDelete.layer.cornerRadius = buttonCornerRadius
         btnDelete.addTarget(self, action: #selector(KeyboardViewController.backSpace), for: .touchUpInside)
-        stackView.addArrangedSubview(btnDelete)
         
-        bottomView.addSubview(stackView)
+        let btnNewLine = UIButton()
+        btnNewLine.setTitle("↵", for: .normal)
+        btnNewLine.backgroundColor = buttonBackgroundColor
+        btnNewLine.setTitleColor(buttonTextColor, for: .normal)
+        btnNewLine.layer.cornerRadius = buttonCornerRadius
+        btnNewLine.addTarget(self, action: #selector(KeyboardViewController.newLine), for: .touchUpInside)
+        
+        let stackViewRight = UIStackView(arrangedSubviews: [btnDelete, btnNewLine])
+        stackViewRight.axis = .horizontal
+        stackViewRight.distribution = .fillEqually
+        stackViewRight.alignment = .fill
+        stackViewRight.spacing = 5
+        
+        stackViewMain.addArrangedSubview(stackViewRight)
+        
+        
+        bottomView.addSubview(stackViewMain)
         
         self.view.addSubview(bottomView)
         
@@ -130,6 +170,14 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         defaults.set(savedWords, forKey: defaultSavedWordsKey)
         
         tableView.reloadData()
+    }
+    
+    func spaceBar() {
+        textDocumentProxy.insertText(" ")
+    }
+    
+    func newLine() {
+        textDocumentProxy.insertText("\n")
     }
     
     func nextKeyboard() {

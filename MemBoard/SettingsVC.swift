@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingsVC.swift
 //  MemBoard
 //
 //  Created by Justin Doan on 4/9/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsVC: UIViewController {
     
     @IBOutlet var `switch`: UISwitch!
     
@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG1"))
         
         let list = defaults.value(forKey: defaultSavedWordsKey)
         
@@ -34,6 +36,11 @@ class ViewController: UIViewController {
             }
         }
         
+        for view in self.view.subviews as [UIView] {
+            if let label = view as? UILabel {
+                label.textColor = UIColor.white
+            }
+        }
     }
     
     @IBAction func switchChanged(_ sender: Any) {

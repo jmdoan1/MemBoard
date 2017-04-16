@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2ii-cK-Zxr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Settings-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SettingsVC" customModule="MemBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -49,12 +49,80 @@
                             <constraint firstItem="shI-Dn-Pb1" firstAttribute="leading" secondItem="ege-JU-8sx" secondAttribute="trailing" constant="8" id="xJT-Fe-uP7"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="jtd-mN-CCv"/>
                     <connections>
                         <outlet property="switch" destination="ege-JU-8sx" id="TyV-1H-Jdm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="897" y="837"/>
+        </scene>
+        <!--Instructions-->
+        <scene sceneID="GqD-q7-GMY">
+            <objects>
+                <viewController id="ZpV-Pz-j4A" customClass="InstructionsVC" customModule="MemBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QO9-bd-fIi"/>
+                        <viewControllerLayoutGuide type="bottom" id="lxi-e1-gVN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qmN-3f-gnB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCg-Zl-FBo">
+                                <rect key="frame" x="0.0" y="20" width="375" height="1123"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="How to use MemBoard" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UVa-Nh-6R1">
+                                        <rect key="frame" x="59.5" y="8" width="257.5" height="43"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="23"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="UVa-Nh-6R1" firstAttribute="top" secondItem="PCg-Zl-FBo" secondAttribute="top" constant="8" id="4fq-G5-PAk"/>
+                                    <constraint firstItem="UVa-Nh-6R1" firstAttribute="centerX" secondItem="PCg-Zl-FBo" secondAttribute="centerX" id="eMh-wq-0Kc"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PCg-Zl-FBo" secondAttribute="trailing" id="89V-6X-7a2"/>
+                            <constraint firstItem="PCg-Zl-FBo" firstAttribute="leading" secondItem="qmN-3f-gnB" secondAttribute="leading" id="BhF-KB-neZ"/>
+                            <constraint firstItem="PCg-Zl-FBo" firstAttribute="top" secondItem="QO9-bd-fIi" secondAttribute="bottom" id="aiv-fk-Vfk"/>
+                            <constraint firstItem="lxi-e1-gVN" firstAttribute="top" secondItem="PCg-Zl-FBo" secondAttribute="bottom" id="gQT-BX-lFT"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Instructions" id="rfc-1A-Pd2"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1200"/>
+                    <connections>
+                        <outlet property="scrollView" destination="PCg-Zl-FBo" id="wlf-t3-7UV"/>
+                        <outlet property="textView" destination="UVa-Nh-6R1" id="4L6-h3-1fM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gz-Kw-G9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589.5999999999999" y="147.52623688155924"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="0MM-8n-e3B">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="2ii-cK-Zxr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="IKY-Bf-hmq">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ZpV-Pz-j4A" kind="relationship" relationship="viewControllers" id="e6J-qa-zvX"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="KxK-0P-M8o"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oa8-Qh-nyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896.79999999999995" y="147.97601199400302"/>
         </scene>
     </scenes>
 </document>
