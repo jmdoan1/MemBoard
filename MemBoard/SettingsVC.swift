@@ -97,6 +97,8 @@ class SettingsVC: UIViewController {
         
         //save new array to user defaults
         defaults.set(savedWords, forKey: defaultSavedWordsKey)
+        
+        tvCustom.text = "Text successfully added!"
     }
     
     
