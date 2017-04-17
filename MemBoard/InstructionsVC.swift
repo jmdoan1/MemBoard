@@ -20,7 +20,6 @@ class InstructionsVC: UIViewController {
         
         textView.textColor = UIColor.white
         
-        
         textView.text = "How to use MemBoard\n\n1. Go to Settings -> General -> Keyboard -> Keyboards -> Add New Keyboard -> select MemBoard\n\n2. Using the regular keyboard, whatever you want to add\n\n3. Switch to the MemBoard keyboard\n\n4. Press the \"+\" button\n\n5. Going forward, you can tap on the saved text to add it wherever you are typing\n\n6. Swipe left to delete\n\n7. Choose your keyboard settings in the app"
         
         textView.addConstraint(NSLayoutConstraint(item: textView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: view.frame.width - 20))
@@ -33,8 +32,11 @@ class InstructionsVC: UIViewController {
         
         textView.isUserInteractionEnabled = false
         
-        //self.tabBarController?.tabBar.tintColor = view.backgroundColor
-        
+        for view in self.view.subviews as [UIView] {
+            if let button = view as? UIButton {
+                button.setTitleColor(UIColor.white, for: .normal)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
