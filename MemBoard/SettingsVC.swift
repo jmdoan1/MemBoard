@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuickTableViewController
 
 class SettingsVC: UIViewController {
     
@@ -22,7 +21,14 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG1"))
+        let model = UIDevice.current.model
+        print("device type=\(model)")
+        
+        if model == "iPad" {
+            view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG2"))
+        } else {
+            view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG1"))
+        }
         
         let list = defaults.value(forKey: defaultSavedWordsKey)
         

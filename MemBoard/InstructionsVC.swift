@@ -16,7 +16,14 @@ class InstructionsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG1"))
+        let model = UIDevice.current.model
+        print("device type=\(model)")
+        
+        if model == "iPad" {
+            view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG2"))
+        } else {
+            view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "BG1"))
+        }
         
         textView.textColor = UIColor.white
         
