@@ -13,8 +13,10 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     let defaults = UserDefaults(suiteName: "group.com.justindoan.MemBoard")!
     let defaultSavedWordsKey = "SAVED_WORDS"
     
-    var savedWords: [String] = []
+    var savedWords: [String] = ["How to:", "1. Type with the regular keyboard", "2. Come back to MemBoard", "3. Hit \"+\"", "4. See that it is added to the list", "5. Tap the saved text", "6. See it added to the field", "7. Swipe left to delete", "8. Configure settings in the app"]
     var tableView: UITableView!
+    
+    var lastType: UIKeyboardType!
 
     //default button added when taget is added, commenting out but leaving for reference
     //@IBOutlet var nextKeyboardButton: UIButton!
@@ -57,18 +59,74 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
             savedWords = words as! [String]
         }
         
-        //add tableview
+        let type = textDocumentProxy.keyboardType!
+        
+        if lastType == nil || lastType != type {
+            setUp(type: type)
+        }
+        
+        
+        
+    }
+    
+    func setUp(type: UIKeyboardType) {
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - 55))
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        tableView.separatorStyle = .none
-        
-        self.view.addSubview(tableView)
+        if type == .numberPad || type == .decimalPad {
+            let numbersView = UIView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - 50))
+            numbersView.backgroundColor = .gray
+            
+            let svMain = UIStackView(frame: numbersView.frame)
+            svMain.axis = .vertical
+            svMain.distribution = .fillEqually
+            svMain.alignment = .fill
+            svMain.spacing = 1
+            
+            var numbers = [["1","2","3"],["4","5","6"],["7","8","9"],[".","0",""]]
+            
+            if type == .numberPad {
+                numbers[3][0] = ""
+            }
+            
+            for arr in numbers {
+                let newStackView = UIStackView()
+                newStackView.axis = .horizontal
+                newStackView.distribution = .fillEqually
+                newStackView.alignment = .fill
+                newStackView.spacing = 1
+                
+                for num in arr {
+                    let newButton = UIButton()
+                    newButton.setTitle(num, for: .normal)
+                    if num != "" {
+                        newButton.backgroundColor = UIColor.white
+                    }
+                    //newButton.setTitleColor(buttonTextColor, for: .normal)
+                    //newButton.layer.cornerRadius = buttonCornerRadius
+                    newButton.addTarget(self, action: #selector(KeyboardViewController.numberButton(sender:)), for: .touchUpInside)
+                    
+                    newStackView.addArrangedSubview(newButton)
+                }
+                
+                svMain.addArrangedSubview(newStackView)
+            }
+            
+            numbersView.addSubview(svMain)
+            view.addSubview(numbersView)
+            
+        } else {
+            //add tableview
+            
+            tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight - 55))
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+            tableView.dataSource = self
+            tableView.delegate = self
+            
+            tableView.separatorStyle = .none
+            
+            self.view.addSubview(tableView)
+        }
         
         //add additional view to bottom of keyboard
         let bottomView = UIView(frame: CGRect(x: 0, y: displayHeight - 50, width: displayWidth, height: 50))
@@ -143,7 +201,6 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         bottomView.addSubview(stackViewMain)
         
         self.view.addSubview(bottomView)
-        
     }
     
     func addString() {
@@ -189,6 +246,10 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
         textDocumentProxy.deleteBackward()
     }
     
+    func numberButton(sender: UIButton) {
+        textDocumentProxy.insertText(sender.currentTitle!)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedWords.count
     }
@@ -228,6 +289,12 @@ class KeyboardViewController: UIInputViewController, UITableViewDelegate , UITab
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
+        
+        let type = textDocumentProxy.keyboardType!
+        
+        if lastType == nil || lastType != type {
+            setUp(type: type)
+        }
         
         var textColor: UIColor
         let proxy = self.textDocumentProxy

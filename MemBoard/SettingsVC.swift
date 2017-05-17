@@ -105,6 +105,8 @@ class SettingsVC: UIViewController {
         defaults.set(savedWords, forKey: defaultSavedWordsKey)
         
         tvCustom.text = "Text successfully added!"
+        
+        self.view.endEditing(true)
     }
     
     

@@ -27,7 +27,7 @@ class InstructionsVC: UIViewController {
         
         textView.textColor = UIColor.white
         
-        textView.text = "How to use MemBoard\n\n1. Go to Settings -> General -> Keyboard -> Keyboards -> Add New Keyboard -> select MemBoard\n\n2. Using the regular keyboard, whatever you want to add\n\n3. Switch to the MemBoard keyboard\n\n4. Press the \"+\" button\n\n5. Going forward, you can tap on the saved text to add it wherever you are typing\n\n6. Swipe left to delete\n\n7. Choose your keyboard settings in the app"
+        textView.text = "How to use MemBoard\n\n1. Go to Settings -> General -> Keyboard -> Keyboards -> Add New Keyboard -> select MemBoard\n\n2. Using the regular keyboard, type whatever you want to add\n\n3. Switch to the MemBoard keyboard\n\n4. Press the \"+\" button\n\n5. Going forward, you can tap on the saved text to add it wherever you are typing\n\n6. Swipe left to delete\n\n7. Choose your keyboard settings in the app"
         
         textView.addConstraint(NSLayoutConstraint(item: textView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: view.frame.width - 20))
         
